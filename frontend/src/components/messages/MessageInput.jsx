@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { BsSend } from "react-icons/bs";
 
 const MessageInput = () => {
+  const [message, setMessage] = useState("");
+  const handleSubmit = (e) => {};
+
   return (
-    <form className="px-4 my-3">
+    <form className="px-4 my-3" onSubmit={handleSubmit}>
       <div className="w-full relative">
         <input
           type="text"
