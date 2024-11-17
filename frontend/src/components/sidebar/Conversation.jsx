@@ -1,8 +1,8 @@
+import { useEffect } from "react";
 import useConversation from "../../zustand/useConversation";
 
 const Conversation = ({ conversation, lastIdx, emoji }) => {
   const { selectedConversation, setSelectedConversation } = useConversation();
-
   const isSelected = selectedConversation?._id === conversation._id;
 
   return (
