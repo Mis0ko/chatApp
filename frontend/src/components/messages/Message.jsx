@@ -26,7 +26,7 @@ const Message = ({ message }) => {
         </div>
       </div>
 
-      <div className={`chat-bubble text-white ${bubbleBgColor}`}>
+      <div className={`chat-bubble text-white ${bubbleBgColor} pb-2`}>
         {message.message}
       </div>
 
