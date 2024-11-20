@@ -1,7 +1,30 @@
-import { createContext } from "react";
+import { createContext, useEffect, useState } from "react";
+import { useAuthContext } from "./AuthContext";
 
 export const SocketContext = createContext();
 
 export const SocketContextProvider = ({ children }) => {
-  return <SocketContext.Provider value={{}}>{children}</SocketContext.Provider>;
+  const [socket, setSocket] = useState(null);
+  const [onlineUsers, setOnlineUsers] = useState([]);
+  const { authUser } = useAuthContext();
+
+  useEffect(() => {
+    if (authUser) {
+      const socket = io("http://localhost:5000"); // init socket connection
+      setSocket(socket);
+
+      return () => socket.close(); // optimize, when component unmount, close socket
+    } else {
+      if (socket) {
+        socket.close();
+        setSocket(null);
+      }
+    }
+  }, []);
+
+  return (
+    <SocketContext.Provider value={{ socket, onlineUsers }}>
+      {children}
+    </SocketContext.Provider>
+  );
 };
