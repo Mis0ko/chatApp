@@ -7,7 +7,7 @@ const app = express();
 const server = http.createServer(app) // englobe le serveur express par un server socket
 const io = new Server(server, {
     cors:{
-        origin:["http://localhost:3000"],
+        origin:["http://chatapp-production-0xap.onrender.com"],
         methods:["GET", "POST"]
     }
 });
